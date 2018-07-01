@@ -1,7 +1,7 @@
 {% if task_list %}
   <ul>
     {% for task in task_list %}
-      <li><a href="/organizer/{{ task.id }}/">{{ task.description }}</a></li>
+      <li><a href="{% url 'organizer:detail' task.id %}">{{ task.description }}</a></li>
     {% endfor %}
   </ul>
 {% else %}

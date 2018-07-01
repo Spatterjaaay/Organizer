@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from .models import Task
 # from django.template import loader
@@ -14,8 +14,11 @@ def index(request):
 
 def detail(request, item_id):
     # return HttpResponse("todo item details: %s" % item_id)
-    try:
-        task = Task.objects.get(pk=item_id)
-    except Task.DoesNotExist:
-        raise Http404("Task does not exist")
+
+    # very common pattern => there is a shortcut for it
+    # try:
+    #     task = Task.objects.get(pk=item_id)
+    # except Task.DoesNotExist:
+    #     raise Http404("Task does not exist")
+    task = get_object_or_404(Task, pk=item_id)
     return render(request, 'organizer/detail.html', {'task': task})
