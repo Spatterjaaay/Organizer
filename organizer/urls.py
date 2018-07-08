@@ -5,5 +5,7 @@ app_name = 'organizer'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
-    path('<int:pk>/', views.DetailView.as_view(), name='detail')
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('new/', views.CreateView.as_view(), name='create'),
+    path('<int:pk>/edit/', views.UpdateView.as_view(), name='update'),
 ]
